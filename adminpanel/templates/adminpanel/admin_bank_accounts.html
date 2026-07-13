@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Admin Bank Account</title>
+
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+
+
+body{
+
+    margin:0;
+
+    font-family:Arial, sans-serif;
+
+    background:#f5f7fb;
+
+}
+
+
+
+.container{
+
+    padding:30px;
+
+}
+
+
+
+.card{
+
+    background:white;
+
+    max-width:450px;
+
+    margin:40px auto;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 20px #ddd;
+
+}
+
+
+
+h2{
+
+    text-align:center;
+
+    color:#1565c0;
+
+    margin-bottom:25px;
+
+}
+
+
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin:10px 0;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+    font-size:16px;
+
+    box-sizing:border-box;
+
+}
+
+
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    margin-top:15px;
+
+    background:#1565c0;
+
+    color:white;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+    background:#0d47a1;
+
+}
+
+
+
+.info{
+
+    background:#e3f2fd;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+    text-align:center;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+
+
+<div class="card">
+
+
+<h2>
+🏦 Admin Bank Account
+</h2>
+
+
+
+<div class="info">
+
+Add your bank details for payments & withdrawals
+
+</div>
+
+
+
+<form method="POST">
+
+
+{% csrf_token %}
+
+
+
+<input
+
+type="text"
+
+name="account_holder"
+
+placeholder="Account Holder Name"
+
+value="{{account.account_holder}}"
+
+required>
+
+
+
+<input
+
+type="text"
+
+name="bank_name"
+
+placeholder="Bank Name"
+
+value="{{account.bank_name}}"
+
+required>
+
+
+
+<input
+
+type="text"
+
+name="account_number"
+
+placeholder="Account Number"
+
+value="{{account.account_number}}"
+
+required>
+
+
+
+<input
+
+type="text"
+
+name="ifsc"
+
+placeholder="IFSC Code"
+
+value="{{account.ifsc}}"
+
+required>
+
+
+
+<input
+
+type="text"
+
+name="upi_id"
+
+placeholder="UPI ID (optional)"
+
+value="{{account.upi_id}}">
+
+
+
+<button>
+
+SAVE ADMIN BANK ACCOUNT
+
+</button>
+
+
+
+</form>
+
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

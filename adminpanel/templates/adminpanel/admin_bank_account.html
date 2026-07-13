@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+Admin Bank Account
+</title>
+
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+}
+
+
+.card{
+
+background:white;
+width:500px;
+margin:50px auto;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px #ddd;
+
+}
+
+
+h2{
+
+color:#00a651;
+text-align:center;
+
+}
+
+
+input{
+
+width:100%;
+padding:12px;
+margin-top:12px;
+border:1px solid #ccc;
+border-radius:8px;
+
+}
+
+
+
+button{
+
+background:#00a651;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:20px;
+margin-top:15px;
+cursor:pointer;
+
+}
+
+
+a{
+
+text-decoration:none;
+color:white;
+
+}
+
+
+.back{
+
+display:block;
+background:#111827;
+padding:12px;
+text-align:center;
+border-radius:20px;
+margin-top:15px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<div class="card">
+
+
+<h2>
+ADMIN BANK ACCOUNT
+</h2>
+
+
+
+<form method="POST">
+
+
+{% csrf_token %}
+
+
+
+<input 
+type="text"
+name="account_holder"
+placeholder="Account Holder Name"
+value="{{account.account_holder}}"
+>
+
+
+
+<input 
+type="text"
+name="bank_name"
+placeholder="Bank Name"
+value="{{account.bank_name}}"
+>
+
+
+
+
+<input 
+type="text"
+name="account_number"
+placeholder="Account Number"
+value="{{account.account_number}}"
+>
+
+
+
+
+<input 
+type="text"
+name="ifsc"
+placeholder="IFSC Code"
+value="{{account.ifsc}}"
+>
+
+
+
+<input 
+type="text"
+name="upi_id"
+placeholder="UPI ID"
+value="{{account.upi_id}}"
+>
+
+
+
+<button>
+
+SAVE ACCOUNT
+
+</button>
+
+
+
+</form>
+
+
+
+
+<a class="back" href="/adminpanel/">
+
+BACK DASHBOARD
+
+</a>
+
+
+
+</div>
+
+
+
+
+</body>
+
+</html>

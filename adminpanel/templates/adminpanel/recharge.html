@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Recharge Requests</title>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+
+<style>
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+
+padding:12px;
+border:1px solid #ddd;
+text-align:center;
+
+}
+
+
+th{
+
+background:#111827;
+color:white;
+
+}
+
+
+.pending{
+
+color:orange;
+
+}
+
+
+.success{
+
+color:green;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h2>Recharge Requests</h2>
+
+
+<table>
+
+
+<tr>
+
+<th>User</th>
+
+<th>Amount</th>
+
+<th>UTR Number</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+
+</tr>
+
+
+
+
+
+{% for r in requests %}
+
+
+<tr>
+
+
+<td>
+
+{{r.user.username}}
+
+</td>
+
+
+
+<td>
+
+₹ {{r.amount}}
+
+</td>
+
+
+
+<td>
+
+{{r.utr_number|default:"-" }}
+
+</td>
+
+
+
+
+<td>
+
+
+{% if r.status == "SUCCESS" %}
+
+
+<span class="success">
+
+{{r.status}}
+
+</span>
+
+
+{% else %}
+
+
+<span class="pending">
+
+{{r.status}}
+
+</span>
+
+
+{% endif %}
+
+
+</td>
+
+
+
+<td>
+
+{{r.created_at}}
+
+</td>
+
+
+
+<td>
+
+
+{% if r.status != "SUCCESS" %}
+
+
+<a href="{% url 'approve_recharge' r.id %}">
+
+Approve
+
+</a>
+
+
+{% else %}
+
+Done
+
+
+{% endif %}
+
+
+</td>
+
+
+</tr>
+
+
+
+{% empty %}
+
+
+
+<tr>
+
+<td colspan="6">
+
+No Recharge Request Found
+
+</td>
+
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+
+
+</table>
+
+
+
+</body>
+
+
+</html>

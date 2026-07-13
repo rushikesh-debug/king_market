@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>
+Recharge Wallet
+</title>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+
+
+<style>
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+
+body{
+
+    font-family:Arial,sans-serif;
+
+    background:#f5f5f5;
+
+}
+
+
+
+.container{
+
+    width:90%;
+
+    max-width:450px;
+
+    margin:50px auto;
+
+}
+
+
+
+.card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 0 15px rgba(0,0,0,0.15);
+
+}
+
+
+
+h2{
+
+    text-align:center;
+
+    color:#00a651;
+
+    margin-bottom:25px;
+
+}
+
+
+
+label{
+
+    font-weight:bold;
+
+}
+
+
+
+input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:10px;
+
+    margin-bottom:20px;
+
+    border-radius:8px;
+
+    border:1px solid #ccc;
+
+    font-size:16px;
+
+}
+
+
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    background:#00a651;
+
+    color:white;
+
+    border:none;
+
+    border-radius:25px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+
+button:hover{
+
+    background:#008c45;
+
+}
+
+
+
+.info{
+
+    margin-top:20px;
+
+    background:#f0fff5;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<div class="container">
+
+
+<div class="card">
+
+
+
+<h2>
+Recharge Wallet
+</h2>
+
+
+
+<form method="POST">
+
+
+{% csrf_token %}
+
+
+
+<label>
+Enter Amount
+</label>
+
+
+
+<input
+
+type="number"
+
+name="amount"
+
+placeholder="Enter Amount ₹"
+
+min="1"
+
+required
+
+>
+
+
+
+
+<button type="submit">
+
+Generate QR
+
+</button>
+
+
+
+</form>
+
+
+
+
+<div class="info">
+
+<p>
+1. Amount enter करा
+</p>
+
+<p>
+2. Generate QR वर click करा
+</p>
+
+<p>
+3. Payment करा आणि पुढच्या page वर submit करा
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+</body>
+
+</html>

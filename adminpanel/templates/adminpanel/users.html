@@ -1,0 +1,77 @@
+{% extends 'adminpanel/base.html' %}
+
+
+{% block content %}
+
+
+<div class="card">
+
+
+<h2>
+Users Management
+</h2>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+
+
+
+
+<table>
+
+
+<tr>
+
+<th>
+Username
+</th>
+
+<th>
+Email
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+
+
+{% for u in users %}
+
+
+<tr>
+
+
+<td>
+{{u.username}}
+</td>
+
+
+<td>
+{{u.email}}
+</td>
+
+
+<td>
+Active
+</td>
+
+
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+</div>
+
+
+{% endblock %}

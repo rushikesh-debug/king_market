@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>King Market</title>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<style>
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+
+body{
+
+background:#f5f7fb;
+
+padding-bottom:80px;
+
+}
+
+
+
+.navbar{
+
+height:65px;
+
+background:#0f172a;
+
+color:white;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 20px;
+
+}
+
+
+
+.logo{
+
+font-size:24px;
+
+font-weight:bold;
+
+color:#00e676;
+
+}
+
+
+
+.container{
+
+padding:18px;
+
+}
+
+
+
+
+.card{
+
+background:white;
+
+padding:20px;
+
+border-radius:18px;
+
+margin-bottom:18px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+
+
+
+.wallet{
+
+background:linear-gradient(135deg,#00c853,#00e676);
+
+color:white;
+
+}
+
+
+
+.wallet h1{
+
+font-size:35px;
+
+}
+
+
+
+
+.play{
+
+background:#111827;
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+
+.play button{
+
+background:#00e676;
+
+border:none;
+
+padding:14px 35px;
+
+border-radius:30px;
+
+font-size:17px;
+
+font-weight:bold;
+
+margin-top:15px;
+
+cursor:pointer;
+
+}
+
+
+
+.btn{
+
+text-decoration:none;
+
+}
+
+
+
+.result-card{
+
+background:white;
+
+padding:20px;
+
+border-radius:18px;
+
+margin-top:15px;
+
+box-shadow:0 4px 12px #ddd;
+
+}
+
+
+
+.game-name{
+
+text-align:center;
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#00a651;
+
+}
+
+
+
+.label{
+
+text-align:center;
+
+font-size:18px;
+
+margin-top:18px;
+
+color:#555;
+
+}
+
+
+
+.number{
+
+text-align:center;
+
+font-size:35px;
+
+font-weight:bold;
+
+margin-top:10px;
+
+color:#111827;
+
+}
+
+
+
+.withdraw{
+
+background:#1565c0;
+
+color:white;
+
+text-align:center;
+
+}
+
+
+
+.withdraw button{
+
+background:white;
+
+color:#1565c0;
+
+border:none;
+
+padding:13px 35px;
+
+border-radius:30px;
+
+font-weight:bold;
+
+margin-top:15px;
+
+}
+
+
+
+
+.bottom{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+height:70px;
+
+background:white;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+box-shadow:0 -3px 10px #ddd;
+
+}
+
+
+
+.bottom a{
+
+text-decoration:none;
+
+color:#555;
+
+font-size:12px;
+
+text-align:center;
+
+}
+
+
+
+.bottom span{
+
+display:block;
+
+font-size:25px;
+
+}
+
+.logo img{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+
+<div class="navbar">
+
+
+{% load static %}
+
+{% load static %}
+
+<div class="logo">
+
+    <img src="{% static 'images/logo.jpeg' %}" 
+         alt="King Market Logo">
+
+</div>
+
+<span class="material-icons">
+
+notifications
+
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="container">
+
+
+
+<!-- WALLET -->
+
+
+<div class="card wallet">
+
+
+<h3>
+
+Wallet Balance
+
+</h3>
+
+
+<h1>
+
+₹{{wallet.balance}}
+
+</h1>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- WITHDRAW -->
+
+
+<div class="card withdraw">
+
+
+<h2>
+
+💸 Withdraw Money
+
+</h2>
+
+
+<p>
+
+Withdraw your winning amount
+
+</p>
+
+
+
+<a href="{% url 'withdraw' %}">
+
+
+<button>
+
+WITHDRAW
+
+</button>
+
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- LIVE GAME -->
+
+
+{% if active_game %}
+
+
+<div class="card play">
+
+
+<h2>
+
+🔥 LIVE GAME
+
+</h2>
+
+
+<h1>
+
+{{active_game.name}}
+
+</h1>
+
+
+
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+<!-- PLAY GAME -->
+
+
+<div class="card play">
+
+
+<h2>
+
+Play Game
+
+</h2>
+
+
+<p>
+
+Select number and place bet
+
+</p>
+
+
+
+{% if active_game %}
+
+
+<a class="btn" href="{% url 'game_play' active_game.id %}">
+
+
+<button>
+
+PLAY NOW
+
+</button>
+
+
+</a>
+
+
+
+{% else %}
+
+
+<button disabled>
+
+NO ACTIVE GAME
+
+</button>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- RESULT -->
+
+
+<div class="card">
+
+
+<h2>
+
+Last Result
+
+</h2>
+
+
+
+
+
+{% for r in results %}
+
+
+
+<div class="result-card">
+
+
+<div class="game-name">
+
+{{r.game.name}}
+
+</div>
+
+
+
+
+
+{% if r.open_pana %}
+
+
+<div class="label">
+
+OPEN
+
+</div>
+
+
+<div class="number">
+
+
+{{r.open_pana}}
+
+&nbsp;
+
+{{r.open_single}}
+
+
+</div>
+
+
+
+{% endif %}
+
+
+
+
+
+
+
+{% if r.close_pana %}
+
+
+<div class="label">
+
+CLOSE
+
+</div>
+
+
+<div class="number">
+
+
+{{r.close_pana}}
+
+&nbsp;
+
+{{r.jodi}}
+
+&nbsp;
+
+{{r.close_single}}
+
+
+
+</div>
+
+
+
+{% endif %}
+
+
+
+</div>
+
+
+
+{% empty %}
+
+
+<h3 style="text-align:center;">
+
+No Result Today
+
+</h3>
+
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- BOTTOM NAV -->
+
+
+<div class="bottom">
+
+
+
+<a href="{% url 'dashboard' %}">
+
+
+<span class="material-icons">
+
+home
+
+</span>
+
+
+Home
+
+
+</a>
+
+
+
+
+
+
+
+<a href="/games/">
+
+
+<span class="material-icons">
+
+sports_esports
+
+</span>
+
+
+Game
+
+
+</a>
+
+
+
+
+
+
+
+<a href="{% url 'wallet_page' %}">
+
+
+<span class="material-icons">
+
+account_balance_wallet
+
+</span>
+
+
+Wallet
+
+
+</a>
+
+
+
+
+
+
+
+
+<a href="{% url 'withdraw' %}">
+
+
+<span class="material-icons">
+
+payments
+
+</span>
+
+
+Withdraw
+
+
+</a>
+
+
+
+
+
+
+
+<a href="/accounts/profile/">
+
+
+<span class="material-icons">
+
+person
+
+</span>
+
+
+Profile
+
+
+</a>
+
+
+
+
+
+</div>
+
+
+
+
+</body>
+
+
+</html>

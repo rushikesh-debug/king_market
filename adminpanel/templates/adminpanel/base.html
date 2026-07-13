@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+KING ADMIN
+</title>
+
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+
+body{
+
+background:#f4f6f8;
+
+}
+
+
+/* SIDEBAR */
+
+.sidebar{
+
+position:fixed;
+
+width:260px;
+
+height:100vh;
+
+background:#111827;
+
+color:white;
+
+padding:20px;
+
+}
+
+
+
+.logo{
+
+font-size:26px;
+
+font-weight:bold;
+
+text-align:center;
+
+color:#00ff88;
+
+margin-bottom:35px;
+
+}
+
+
+
+.menu a{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:14px;
+
+margin:8px 0;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+}
+
+
+
+.menu a:hover{
+
+background:#00a651;
+
+}
+
+
+
+
+
+/* MAIN */
+
+.main{
+
+margin-left:260px;
+
+padding:25px;
+
+}
+
+
+
+
+
+.card{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0 5px 15px #ddd;
+
+margin-bottom:20px;
+
+}
+
+
+
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+
+th{
+
+background:#111827;
+
+color:white;
+
+}
+
+
+
+td,th{
+
+padding:12px;
+
+text-align:center;
+
+}
+
+
+
+
+
+.btn{
+
+background:#00a651;
+
+color:white;
+
+padding:10px 20px;
+
+border-radius:20px;
+
+text-decoration:none;
+
+}
+
+
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="sidebar">
+
+
+<div class="logo">
+
+KING ADMIN
+
+</div>
+
+
+
+
+<div class="menu">
+
+
+<a href="{% url 'admin_dashboard' %}">
+
+<span class="material-icons">
+dashboard
+</span>
+
+Dashboard
+
+</a>
+
+
+
+
+<a href="{% url 'recharge_list' %}">
+
+<span class="material-icons">
+account_balance_wallet
+</span>
+
+Recharge
+
+</a>
+
+
+
+
+<a href="{% url 'users_list' %}">
+
+<span class="material-icons">
+people
+</span>
+
+Users
+
+</a>
+
+
+
+
+
+<a href="{% url 'games_list' %}">
+
+<span class="material-icons">
+sports_esports
+</span>
+
+Games
+
+</a>
+
+
+
+
+<a href="{% url 'bets_list' %}">
+
+<span class="material-icons">
+payments
+</span>
+
+Bets
+
+</a>
+
+
+
+
+<a href="{% url 'results_list' %}">
+
+<span class="material-icons">
+emoji_events
+</span>
+
+Results
+
+</a>
+
+
+
+
+<a href="/accounts/logout/">
+
+<span class="material-icons">
+logout
+</span>
+
+Logout
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="main">
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+</div>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+{{game.name}} Play
+</title>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+
+<style>
+
+body{
+
+    background:#121212;
+    color:white;
+    font-family:Arial;
+
+}
+
+
+.container{
+
+    width:90%;
+    max-width:700px;
+    margin:30px auto;
+
+}
+
+
+.card{
+
+    background:#1e1e1e;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:20px;
+
+}
+
+
+input,select,button{
+
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+
+    border-radius:8px;
+    border:none;
+
+}
+
+
+button{
+
+    background:#00c853;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+
+}
+
+
+.bet-row{
+
+    background:#292929;
+    padding:15px;
+    margin-top:15px;
+    border-radius:10px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+🎮 {{game.name}}
+</h1>
+
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+
+<div class="card">
+
+
+<h2>
+Select Bet Type
+</h2>
+
+
+
+<select id="type">
+
+<option value="SINGLE">
+Single
+</option>
+
+
+{% if "CLOSE" not in game.name %}
+
+<option value="JODI">
+Jodi
+</option>
+
+{% endif %}
+
+
+<option value="PANA">
+Pana
+</option>
+
+
+</select>
+<input 
+id="number"
+placeholder="Enter Number">
+
+
+<input 
+id="amount"
+type="number"
+placeholder="Amount">
+
+
+
+<button
+type="button"
+onclick="addBet()">
+
+ADD BET
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+Your Bets
+</h2>
+
+
+
+<div id="bets">
+
+</div>
+
+
+</div>
+
+
+
+
+<button type="submit">
+
+SUBMIT ALL BETS
+
+</button>
+
+
+
+</form>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+let count = 0;
+
+
+
+function addBet(){
+
+
+let type =
+document.getElementById("type").value;
+
+
+
+let number =
+document.getElementById("number").value;
+
+
+
+let amount =
+document.getElementById("amount").value;
+
+
+
+
+if(number=="" || amount==""){
+
+alert("Fill Details");
+return;
+
+}
+
+
+
+
+let div =
+document.createElement("div");
+
+
+
+div.className="bet-row";
+
+
+
+div.innerHTML=`
+
+${type}
+-
+${number}
+-
+₹${amount}
+
+
+<input 
+type="hidden"
+name="bets"
+value="${type},${number},${amount}">
+
+`;
+
+
+
+document.getElementById("bets")
+.appendChild(div);
+
+
+
+document.getElementById("number").value="";
+document.getElementById("amount").value="";
+
+
+
+}
+
+
+</script>
+
+
+
+</body>
+
+</html>

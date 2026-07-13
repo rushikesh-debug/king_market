@@ -64,7 +64,6 @@ google-auth-httplib2==0.3.0
 google-genai==1.60.0
 google-generativeai==0.8.6
 googleapis-common-protos==1.72.0
-googletrans==4.0.0rc1
 greenlet==3.2.3
 grpcio==1.76.0
 grpcio-status==1.71.2

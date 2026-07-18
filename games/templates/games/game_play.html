@@ -92,6 +92,10 @@ button{
 🎮 {{game.name}}
 </h1>
 
+{% if "CLOSE" not in game.name %}
+<option value="JODI">Jodi</option>
+{% endif %}
+
 
 
 <form method="POST">

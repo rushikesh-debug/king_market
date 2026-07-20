@@ -32,36 +32,35 @@ User = get_user_model()
 # ADMIN DASHBOARD
 # =========================
 
+from django.utils import timezone
+
 def admin_dashboard(request):
 
+    current_time = timezone.localtime().time()
 
-    users = User.objects.all().count()
+    active_game = Game.objects.filter(
+        is_active=True,
+        open_time__lte=current_time,
+        close_time__gte=current_time
+    ).first()
 
+    users = User.objects.count()
 
-    games = Game.objects.all().count()
+    games = Game.objects.count()
 
-
-    bets = ContestEntry.objects.all().count()
-
-
+    bets = ContestEntry.objects.count()
 
     recharges = RechargeRequest.objects.all().order_by(
         "-created_at"
     )
 
-
-
     withdraw_requests = Withdraw.objects.all().order_by(
         "-created_at"
     )
 
-
-
     results = Result.objects.all().order_by(
         "-created_at"
     )
-
-
 
     single_summary = ContestEntry.objects.filter(
         entry_type="SINGLE"
@@ -71,8 +70,6 @@ def admin_dashboard(request):
         total=Sum("amount")
     )
 
-
-
     jodi_summary = ContestEntry.objects.filter(
         entry_type="JODI"
     ).values(
@@ -80,8 +77,6 @@ def admin_dashboard(request):
     ).annotate(
         total=Sum("amount")
     )
-
-
 
     pana_summary = ContestEntry.objects.filter(
         entry_type="PANA"
@@ -91,41 +86,29 @@ def admin_dashboard(request):
         total=Sum("amount")
     )
 
-
-
     context = {
-
 
         "users_count": users,
 
-
         "games_count": games,
-
 
         "bets_count": bets,
 
+        "active_game": active_game,
 
         "recharges": recharges,
 
-
         "withdraw_requests": withdraw_requests,
-
 
         "results": results,
 
-
         "single_summary": single_summary,
-
 
         "jodi_summary": jodi_summary,
 
-
         "pana_summary": pana_summary,
 
-
     }
-
-
 
     return render(
 
@@ -136,10 +119,6 @@ def admin_dashboard(request):
         context
 
     )
-
-
-
-
 
 
 # =========================

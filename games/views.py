@@ -6,6 +6,8 @@ from django.utils import timezone
 from games.models import Game, Result, ContestEntry
 from wallet.models import Wallet
 
+from decimal import Decimal
+
 
 # =========================
 # DASHBOARD

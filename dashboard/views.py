@@ -51,9 +51,10 @@ def dashboard(request):
     # ==========================
 
     results = Result.objects.filter(
-        result_date=today
+    result_date=today,
+    publish_time__lte=current_time
     ).order_by("-created_at")
-
+    
     # ==========================
     # USER BETS
     # ==========================

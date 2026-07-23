@@ -35,7 +35,7 @@ User = get_user_model()
 from django.utils import timezone
 
 def admin_dashboard(request):
-    raise Exception("ADMIN DASHBOARD TEST")
+    
 
     current_time = timezone.localtime().time()
 
